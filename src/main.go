@@ -1,47 +1,13 @@
-#![feature(plugin, custom_derive)]
-#![plugin(serde_macros)]
+package main
 
-extern crate docopt;
-#[macro_use]
-extern crate lazy_static;
-#[macro_use]
-extern crate log as metalog;
-extern crate nanomsg;
-extern crate num;
-extern crate rand;
-extern crate libc;
-extern crate serde;
-extern crate serde_cbor;
-
-mod address;
-mod function;
-mod functions;
-mod log;
-mod memory;
-mod message;
-mod network;
-mod object;
-mod processor;
-mod reference;
-mod stored;
-mod thunk;
-mod transceiver;
-mod weight;
-mod weighted;
-
-use std::fs::File;
-use std::str::FromStr;
-use std::io::Read;
-use std::iter::FromIterator;
-
-use docopt::{ArgvMap, Docopt};
-
-use network::Address;
-use processor::{Processor, ProcessorId, MASTER_ID};
+import (
+  "fmt"
+  "github.com/docopt/docopt-go"
+  "encoding/gob"
+)
 
 
-
-fn get_args() -> ArgvMap {
+func get_args() {
   let usage = "
 Lisp?
 
